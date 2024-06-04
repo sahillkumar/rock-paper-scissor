@@ -62,3 +62,12 @@ console.table({
   "Human Score": humanScore,
   "Computer Score": computerScore,
 });
+
+const getWinner = () => {
+  if (computerScore === humanScore) return "It's a drow";
+  return computerScore > humanScore ? "Computer Wins" : "You Win";
+};
+
+const winner = getWinner();
+
+console.log("%c", "color:red", winner);
