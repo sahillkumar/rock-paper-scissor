@@ -3,9 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
     <title>Rock Paper Scissor</title>
   </head>
   <body>
+    <div class="container">
+      <h1 class="header">Rock Paper Scissors</h1>
+      <div class="playground">
+        <h3 class="alert" id="alert"></h3>
+        <div class="cardContainer">
+          <div class="card">
+            <div class="cardHeader">
+              <h4>Computer : <strong id="computerScore">0</strong></h4>
+            </div>
+            <div class="cardBody">Image here</div>
+          </div>
+          <div>
+            <div class="winner">winner</div>
+            <button class="restart">Restart</button>
+          </div>
+          <div class="card">
+            <div class="cardHeader">
+              <h4>Human : <strong id="humanScore">0</strong></h4>
+            </div>
+            <div class="cardBody">Image here</div>
+          </div>
+        </div>
+        <div class="selectionArea">
+          <h3 class="selectionHeader">Select One</h3>
+          <div class="selections" id="selections">
+            <div class="selector">
+              <img src="./images/rock.svg" alt="rock" id="rock" />
+            </div>
+            <div class="selector">
+              <img src="./images/paper.svg" alt="paper" id="paper" />
+            </div>
+            <div class="selector">
+              <img src="./images/scissor.svg" alt="scissor" id="scissor" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
