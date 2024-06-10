@@ -1,18 +1,40 @@
-const choices = ["rock", "paper", "scissor"];
-const WON_TEXT = "You WON!";
-const LOST_TEXT = "You LOSE!";
+const choices = ["rock", "paper", "scissors"];
+const WON_TEXT = "WON!";
+const LOST_TEXT = "LOST!";
 const DEFAULT_HEADER_TEXT = "First to 5 Wins, Try Your Luck !";
+const images = {
+  rock: "./images/rock.svg",
+  paper: "./images/paper.svg",
+  scissors: "./images/scissors.svg",
+};
 
 let humanScore = 0;
 let computerScore = 0;
-let round = 0;
+let roundNumber = 0;
+let computerChoice;
+let humanChoice;
 
 const selections = document.querySelector("#selections");
 const restartBtn = document.querySelector(".restart");
-const winnerNode = document.querySelector(".winner");
+const result = document.querySelector(".result");
 const humanScoreNode = document.getElementById("humanScore");
 const compScoreNode = document.querySelector("#computerScore");
 const alert = document.querySelector("#alert");
+const round = document.querySelector(".round");
+const resultSection = document.querySelector(".resultSection");
+const humanSelectionArea = document.getElementById("humanSelection");
+const compSelectionArea = document.getElementById("compSelection");
+
+const displaySelectionEvent = new CustomEvent("displaySelection");
+
+function displayImage(containerNode, imgSrc) {
+  const img = document.createElement("img");
+  img.src = imgSrc;
+  while (containerNode.firstChild) {
+    containerNode.removeChild(containerNode.firstChild);
+  }
+  containerNode.appendChild(img);
+}
 
 window.addEventListener(
   "load",
@@ -22,22 +44,40 @@ window.addEventListener(
   { once: true }
 );
 
+humanSelectionArea.addEventListener("displaySelection", () => {
+  displayImage(humanSelectionArea, images[humanChoice]);
+});
+
+compSelectionArea.addEventListener("displaySelection", () => {
+  displayImage(compSelectionArea, images[computerChoice]);
+});
+
 restartBtn.addEventListener("click", () => {
   humanScore = 0;
   computerScore = 0;
-  winnerNode.style.visibility = "hidden";
+  roundNumber = 0;
+  resultSection.style.visibility = "hidden";
   humanScoreNode.textContent = humanScore;
   compScoreNode.textContent = computerScore;
   alert.textContent = DEFAULT_HEADER_TEXT;
   restartBtn.style.visibility = "hidden";
+  while (humanSelectionArea.firstChild) {
+    humanSelectionArea.removeChild(humanSelectionArea.firstChild);
+  }
+  while (compSelectionArea.firstChild) {
+    compSelectionArea.removeChild(compSelectionArea.firstChild);
+  }
+  humanSelectionArea.textContent = "Your Selection";
+  compSelectionArea.textContent = "Computer Selection";
 });
 
 selections.addEventListener("click", (e) => {
   const id = e.target?.id;
   if (!choices.includes(id)) return;
-  const humanChoice = id;
-  const computerChoice = getComputerChoice();
-  playRound(humanChoice, computerChoice);
+  humanChoice = id;
+  computerChoice = getComputerChoice();
+
+  playRound();
 });
 
 function getComputerChoice() {
@@ -45,9 +85,8 @@ function getComputerChoice() {
   return choices[random];
 }
 
-function playRound(humanChoice, computerChoice) {
+function playRound() {
   if (humanScore === 5 || computerScore === 5) return;
-
   let resultText = "";
   if (humanChoice === computerChoice) {
     resultText = "DRAW";
@@ -55,7 +94,7 @@ function playRound(humanChoice, computerChoice) {
     if (computerChoice === "paper") {
       computerScore += 1;
       resultText = LOST_TEXT;
-    } else if (computerChoice === "scissor") {
+    } else if (computerChoice === "scissors") {
       humanScore += 1;
       resultText = WON_TEXT;
     }
@@ -63,11 +102,11 @@ function playRound(humanChoice, computerChoice) {
     if (computerChoice === "rock") {
       humanScore += 1;
       resultText = WON_TEXT;
-    } else if (computerChoice === "scissor") {
+    } else if (computerChoice === "scissors") {
       computerScore += 1;
       resultText = LOST_TEXT;
     }
-  } else if (humanChoice === "scissor") {
+  } else if (humanChoice === "scissors") {
     if (computerChoice === "paper") {
       humanScore += 1;
       resultText = WON_TEXT;
@@ -76,24 +115,27 @@ function playRound(humanChoice, computerChoice) {
       resultText = LOST_TEXT;
     }
   }
-
+  compSelectionArea.dispatchEvent(displaySelectionEvent);
+  humanSelectionArea.dispatchEvent(displaySelectionEvent);
   afterEffects(resultText);
 }
 
 const afterEffects = (resultText) => {
-  winnerNode.textContent = resultText;
-  winnerNode.style.visibility = "visible";
+  round.textContent = "Round - " + (roundNumber + 1);
+  result.textContent = resultText;
+  resultSection.style.visibility = "visible";
   humanScoreNode.textContent = humanScore;
   compScoreNode.textContent = computerScore;
 
-  if (humanScore === 5) {
+  if (humanScore === 5 || computerScore === 5) {
+    const round = document.querySelector(".round");
+    round.textContent = "";
     restartBtn.style.visibility = "visible";
-    winnerNode.innerHTML =
-      "&#x1F389;&#x1F389; Congratulations, You Win  &#x1F389;&#x1F389;";
-  } else if (computerScore === 5) {
-    winnerNode.innerHTML = "OOps you lost";
-    restartBtn.style.visibility = "visible";
+    if (humanScore === 5) {
+      result.innerHTML = "Hurray <br/> You WON!";
+    } else if (computerScore === 5) {
+      result.innerHTML = "Oops <br/> You LOST!";
+    }
   }
+  roundNumber += 1;
 };
-
-const displaySelectionEvent = new CustomEvent("displaySelection");

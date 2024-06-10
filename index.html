@@ -4,33 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
     <title>Rock Paper Scissor</title>
   </head>
   <body>
     <div class="container">
-      <h1 class="header">Rock Paper Scissors</h1>
+      <h1 class="header">ROCK - PAPER - SCISSORS</h1>
       <div class="playground">
         <h3 class="alert" id="alert"></h3>
         <div class="cardContainer">
           <div class="card">
             <div class="cardHeader">
-              <h4>Computer : <strong id="computerScore">0</strong></h4>
+              <h4>COMPUTER : <span id="computerScore">0</span></h4>
             </div>
-            <div class="cardBody">Image here</div>
+            <div class="cardBody" id="compSelection">Computer Selection</div>
           </div>
           <div>
-            <div class="winner">winner</div>
-            <button class="restart">Restart</button>
+            <div class="resultSection">
+              <div class="round">Round</div>
+              <div class="result">Result</div>
+            </div>
+            <button class="restart">Try Again ?</button>
           </div>
           <div class="card">
             <div class="cardHeader">
-              <h4>Human : <strong id="humanScore">0</strong></h4>
+              <h4>HUMAN : <span id="humanScore">0</span></h4>
             </div>
-            <div class="cardBody">Image here</div>
+            <div class="cardBody" id="humanSelection">Your Selection</div>
           </div>
         </div>
         <div class="selectionArea">
-          <h3 class="selectionHeader">Select One</h3>
+          <h3 class="selectionHeader">Select Your Choice</h3>
           <div class="selections" id="selections">
             <div class="selector">
               <img src="./images/rock.svg" alt="rock" id="rock" />
@@ -39,7 +52,7 @@
               <img src="./images/paper.svg" alt="paper" id="paper" />
             </div>
             <div class="selector">
-              <img src="./images/scissor.svg" alt="scissor" id="scissor" />
+              <img src="./images/scissors.svg" alt="scissors" id="scissors" />
             </div>
           </div>
         </div>

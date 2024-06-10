@@ -2,25 +2,35 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background: url("./images/bg.webp");
+  color: rgba(245, 245, 245, 0.8);
+  background-size: cover;
+  font-family: "Lato", sans-serif;
 }
 .header {
   text-align: center;
+  margin: 0;
+  padding: 16px 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  color: #ffd14a;
+  letter-spacing: 2px;
 }
 
 .alert {
   height: 40px;
   margin: 0;
-  /* border: 1px solid green; */
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 16px;
 }
 
 .playground {
   min-height: calc(100vh - 90px);
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
 }
 
 .selectionArea {
@@ -31,6 +41,7 @@ body {
   margin: 0;
   text-align: center;
   margin-bottom: 8px;
+  font-size: 16px;
 }
 
 .selections {
@@ -46,17 +57,16 @@ body {
 }
 
 .selector {
-  /* border: 3px solid #ffcb4b; */
   height: 120px;
   border-radius: 50%;
-  /* padding: 16px; */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .cardContainer {
   flex: 1;
   display: flex;
-  /* justify-content: space-evenly; */
-  border: 1px solid yellowgreen;
   align-items: center;
   justify-content: center;
   gap: 8%;
@@ -65,30 +75,81 @@ body {
 .card {
   height: 250px;
   width: 250px;
-  border: 1px solid green;
+  border: 5px solid rgba(245, 245, 245, 0.35);
   display: flex;
   flex-direction: column;
+  color: rgba(245, 245, 245, 0.7);
+  border-radius: 8px;
 }
 
 .cardHeader {
   text-align: center;
+  font-family: "Montserrat", sans-serif;
+  color: #ffd14a;
+  border-bottom: 5px solid rgba(245, 245, 245, 0.35);
 }
 
 .cardBody {
   flex: 1;
-  border: 1px solid red;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.winner,
+.cardBody > img {
+  height: 100%;
+  width: 100%;
+}
+
+.resultSection,
 .restart {
   visibility: hidden;
-  border: 1px solid red;
-  width: 100px;
+  width: 150px;
   text-align: center;
-  padding: 8px 16px;
+}
+
+.resultSection {
+  border-radius: 8px;
+  border: 3px solid #ffd14a;
+  padding: 4px;
+  color: #ffd14a;
 }
 
 .restart {
-  margin-top: 8px;
+  margin-top: 20px;
   width: 100%;
+  padding: 8px 16px;
+  cursor: pointer;
+  border: 4px solid rgba(245, 245, 245, 0.35);
+  border-radius: 8px;
+  color: #ffd14a;
+  background-color: transparent;
+  font-weight: 600;
+}
+
+.restart:hover {
+  background-color: rgba(245, 245, 245, 0.35);
+}
+
+.round {
+  font-size: 12px;
+  padding: 4px;
+  font-weight: 600;
+}
+.result {
+  padding: 16px;
+}
+
+#rock {
+  height: 75%;
+}
+
+#scissors {
+  height: 80%;
+}
+
+#paper {
+  height: 90%;
 }
