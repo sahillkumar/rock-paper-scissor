@@ -7,15 +7,30 @@ body {
   background-size: cover;
   font-family: "Lato", sans-serif;
 }
+
+body::before {
+  content: "";
+  position: fixed; /* Fixes the background to viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("./images/bg.webp");
+  background-size: cover;
+  opacity: 0.5; /* Adjust the opacity value as needed */
+  z-index: -1; /* Ensures the background is behind the content */
+}
+
 .header {
   text-align: center;
   margin: 0;
-  padding: 16px 0;
+  padding: 16px;
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
-  font-size: 40px;
+  font-size: 64px;
   color: #ffd14a;
   letter-spacing: 2px;
+  height: 100px;
 }
 
 .alert {
@@ -24,40 +39,45 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 24px;
 }
 
 .playground {
-  min-height: calc(100vh - 90px);
+  min-height: calc(100vh - 132px);
   display: flex;
   flex-direction: column;
 }
 
 .selectionArea {
-  padding: 12px;
+  padding: 32px;
 }
 
 .selectionHeader {
   margin: 0;
   text-align: center;
   margin-bottom: 8px;
-  font-size: 16px;
+  font-size: 24px;
 }
 
 .selections {
   display: flex;
   justify-content: center;
-  gap: 48px;
+  gap: 64px;
 }
 
 .selections img {
   height: 100%;
   width: 100%;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+.selections img:hover {
+  transform: scale(1.2);
 }
 
 .selector {
-  height: 120px;
+  height: 132px;
   border-radius: 50%;
   display: flex;
   align-items: flex-end;
@@ -73,8 +93,8 @@ body {
 }
 
 .card {
-  height: 250px;
-  width: 250px;
+  height: 400px;
+  width: 400px;
   border: 5px solid rgba(245, 245, 245, 0.35);
   display: flex;
   flex-direction: column;
@@ -87,6 +107,11 @@ body {
   font-family: "Montserrat", sans-serif;
   color: #ffd14a;
   border-bottom: 5px solid rgba(245, 245, 245, 0.35);
+  font-size: 32px;
+}
+
+.cardHeader > h4 {
+  margin: 24px;
 }
 
 .cardBody {
@@ -96,6 +121,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .cardBody > img {
@@ -106,7 +133,7 @@ body {
 .resultSection,
 .restart {
   visibility: hidden;
-  width: 150px;
+  width: 180px;
   text-align: center;
 }
 
@@ -115,31 +142,36 @@ body {
   border: 3px solid #ffd14a;
   padding: 4px;
   color: #ffd14a;
+  font-family: "Montserrat", sans-serif;
 }
 
 .restart {
-  margin-top: 20px;
+  margin-top: 24px;
   width: 100%;
-  padding: 8px 16px;
+  padding: 16px 32px;
   cursor: pointer;
   border: 4px solid rgba(245, 245, 245, 0.35);
   border-radius: 8px;
   color: #ffd14a;
   background-color: transparent;
   font-weight: 600;
+  font-size: 18px;
 }
 
 .restart:hover {
-  background-color: rgba(245, 245, 245, 0.35);
+  border: 4px solid whitesmoke;
 }
 
 .round {
-  font-size: 12px;
+  font-size: 18px;
   padding: 4px;
   font-weight: 600;
 }
 .result {
   padding: 16px;
+  font-size: 28px;
+
+  font-weight: 600;
 }
 
 #rock {
